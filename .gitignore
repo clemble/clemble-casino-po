@@ -4,3 +4,35 @@
 *.jar
 *.war
 *.ear
+*.zip
+*.log
+*.tar.gz
+*.tar
+*.gz
+*.log
+*.txt
+# Eclipse configurations #
+.idea
+*.iml
+.classpath
+.project
+.settings
+**/.classpath
+**/.project
+**/.settings
+**/.idea
+**/*.iml
+**/*.log
+# Build directories #
+target
+bin
+build
+logs
+**/target
+**/build
+**/bin
+**/logs
+# Non related objects #
+.gradle
+.DS_Store
+
