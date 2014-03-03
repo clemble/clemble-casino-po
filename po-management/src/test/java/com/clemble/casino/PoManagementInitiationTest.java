@@ -1,4 +1,4 @@
-package com.clemble.casino.po;
+package com.clemble.casino;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,7 +11,7 @@ import com.clemble.casino.po.spring.web.management.PoManagementWebSpringConfigur
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration(classes = PoManagementWebSpringConfiguration.class)
-public class PoInitiationTest {
+public class PoManagementInitiationTest {
 
     @Test
     public void testInitialized() {

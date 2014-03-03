@@ -9,7 +9,7 @@ import java.util.List;
 import com.clemble.casino.integration.game.RoundGamePlayer;
 import com.clemble.casino.po.PoState;
 import com.clemble.casino.po.integration.emulation.PoRoundPlayer;
-import com.clemble.casino.server.spring.common.SpringConfiguration;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,6 +30,7 @@ import com.clemble.casino.integration.game.construction.GameScenarios;
 import com.clemble.casino.integration.game.construction.PlayerScenarios;
 import com.clemble.casino.player.PlayerAware;
 import com.clemble.casino.po.spring.integration.PoTestConfiguration;
+import com.clemble.casino.server.spring.common.SpringConfiguration;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration

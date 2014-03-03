@@ -7,10 +7,11 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
-import com.clemble.casino.game.event.server.MatchEndedEvent;
+import com.clemble.casino.game.event.server.RoundEndedEvent;
 import com.clemble.casino.integration.game.RoundGamePlayer;
 import com.clemble.casino.po.PoState;
 import com.clemble.casino.po.integration.emulation.PoRoundPlayer;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -94,8 +95,8 @@ public class GameTransactionTest {
 
         List<GameSessionAwareEvent> events = A.getEvents();
         GameSessionAwareEvent lastEvent = events.get(events.size() - 1);
-        assertTrue(lastEvent instanceof MatchEndedEvent);
-        assertNotNull(((MatchEndedEvent) lastEvent).getTransaction());
+        assertTrue(lastEvent instanceof RoundEndedEvent);
+        assertNotNull(((RoundEndedEvent) lastEvent).getTransaction());
     }
 
 }
