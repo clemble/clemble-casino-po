@@ -96,7 +96,6 @@ public class GameTransactionTest {
         List<GameSessionAwareEvent> events = A.getEvents();
         GameSessionAwareEvent lastEvent = events.get(events.size() - 1);
         assertTrue(lastEvent instanceof RoundEndedEvent);
-        assertNotNull(((RoundEndedEvent) lastEvent).getTransaction());
     }
 
 }

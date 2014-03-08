@@ -7,6 +7,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.List;
 
 import com.clemble.casino.integration.game.RoundGamePlayer;
+import com.clemble.casino.integration.game.construction.SyncGameScenarios;
 import com.clemble.casino.po.PoState;
 import com.clemble.casino.po.integration.emulation.PoRoundPlayer;
 import org.junit.Test;
@@ -33,28 +34,7 @@ import com.clemble.casino.po.spring.integration.PoTestConfiguration;
 public class SimpleTicTacToeGameITest {
 
     @Autowired
-    public GameScenarios gameScenarios;
-
-    @Test
-    public void testMoneyAndMoveProcessing() {
-        List<RoundGamePlayer<PoState>> players = gameScenarios.match(Game.pic);
-        PoRoundPlayer playerA = (PoRoundPlayer) players.get(0);
-        PoRoundPlayer playerB = (PoRoundPlayer) players.get(1);
-        long gamePrice = playerA.getConfiguration().getPrice().getAmount();
-
-        playerA.select(0, 0);
-
-        playerA.bet(5);
-        playerB.bet(2);
-
-        playerB.isToMove();
-        assertEquals(playerB.getNextMove().getClass(), ExpectedEvent.class);
-        playerA.syncWith(playerB);
-
-        assertTrue(playerB.getState().getRoot().owned(0, 0));
-        assertEquals(playerB.getMoneyLeft(), gamePrice - 2);
-        assertEquals(playerA.getMoneyLeft(), gamePrice - 5);
-    }
+    public SyncGameScenarios gameScenarios;
 
     @Test
     public void testSimpleScenario() {

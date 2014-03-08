@@ -9,8 +9,8 @@
     <artifactId>po-integration</artifactId>
     <dependencies>
         <dependency>
-            <groupId>com.clemble.casino.po</groupId>
-            <artifactId>po-management</artifactId>
+            <groupId>com.clemble.casino.server</groupId>
+            <artifactId>management-web</artifactId>
         </dependency>
         <dependency>
             <groupId>com.clemble.test</groupId>
@@ -145,8 +145,8 @@
                                             <type>war</type>
                                         </artifactItem>
                                         <artifactItem>
-                                            <groupId>com.clemble.casino.po</groupId>
-                                            <artifactId>po-management</artifactId>
+                                            <groupId>com.clemble.casino.server</groupId>
+                                            <artifactId>management-web</artifactId>
                                             <version>${project.version}</version>
                                             <destFileName>management.war</destFileName>
                                             <type>war</type>

@@ -3,6 +3,7 @@ package com.clemble.casino.po.spring.integration;
 import com.clemble.casino.integration.game.RoundGamePlayerFactory;
 import com.clemble.casino.po.PoState;
 import com.clemble.casino.po.integration.emulation.PoRoundGamePlayerFactory;
+import com.clemble.casino.server.spring.web.management.ManagementWebSpringConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -26,7 +27,6 @@ import com.clemble.casino.server.spring.web.payment.PaymentWebSpringConfiguratio
 import com.clemble.casino.server.spring.web.player.PlayerWebSpringConfiguration;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.clemble.casino.po.spring.web.game.PoWebSpringConfiguration;
-import com.clemble.casino.po.spring.web.management.PoManagementWebSpringConfiguration;
 
 @Configuration
 @Import(value = { BaseTestSpringConfiguration.class, PoTestConfiguration.LocalTestConfiguration.class, PoTestConfiguration.IntegrationTestConfiguration.class })
@@ -39,7 +39,7 @@ public class PoTestConfiguration implements TestSpringConfiguration {
 
     @Configuration
     @Profile(value = SpringConfiguration.DEFAULT)
-    @Import(value = { PoWebSpringConfiguration.class, PoManagementWebSpringConfiguration.class, PlayerWebSpringConfiguration.class, PaymentWebSpringConfiguration.class })
+    @Import(value = { PoWebSpringConfiguration.class, ManagementWebSpringConfiguration.class, PlayerWebSpringConfiguration.class, PaymentWebSpringConfiguration.class })
     public static class LocalTestConfiguration {
 
     }

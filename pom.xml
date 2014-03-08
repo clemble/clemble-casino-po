@@ -8,7 +8,6 @@
     <modules>
         <module>po-common</module>
         <module>po-android</module>
-        <module>po-management</module>
         <module>po-game</module>
         <module>po-integration</module>
     </modules>

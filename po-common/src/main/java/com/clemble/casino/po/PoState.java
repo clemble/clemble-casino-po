@@ -86,7 +86,7 @@ public class PoState implements GameState {
             board.setSelected(cellToSelect);
             context.getActionLatch().expectNext(context.getPlayerIterator().getPlayers(), "bet", BetAction.class);
             // Step 3. Returning result
-            resEvent = new RoundStateChangedEvent(session, Collections.singletonList(clientEvent));
+            return new RoundStateChangedEvent(context.getSession(), session.getState(), Collections.singletonList(clientEvent));
         } else if (clientEvent instanceof BetAction) {
             // Step 1. Populating made moves
             context.getActionLatch().put((BetAction) clientEvent);
@@ -113,7 +113,7 @@ public class PoState implements GameState {
                 GameOutcome outcome = PoBoard.fetchOutcome(board);
                 if (outcome == null && emptyAccounts.size() != 0) {
                     if (emptyAccounts.size() == 2) {
-                        resEvent = new RoundEndedEvent(session, new DrawOutcome());
+                        resEvent = new RoundEndedEvent(context, session.getState(), new DrawOutcome());
                     } else {
                         String owner = context.getPlayerIterator().whoIsOpponents(emptyAccounts.iterator().next()).iterator().next();
                         board.markEmpty(owner);
@@ -123,13 +123,13 @@ public class PoState implements GameState {
                     }
                 }
                 if (outcome != null)
-                    resEvent = new RoundEndedEvent(session, outcome);
+                    return new RoundEndedEvent(context, session.getState(), outcome);
                 if (resEvent == null) {
                     context.getActionLatch().expectNext(context.getPlayerIterator().next(), "select", SelectAction.class);
-                    resEvent = new RoundStateChangedEvent(session, bets);
+                    return new RoundStateChangedEvent(context.getSession(), session.getState(), bets);
                 }
             } else {
-                resEvent = new PlayerMovedEvent(session.getSession(), clientEvent.getPlayer());
+                return new PlayerMovedEvent(session.getSession(), clientEvent.getPlayer());
             }
         } else if (clientEvent instanceof SurrenderAction) {
             // Step 1. Fetching player identifier
@@ -137,11 +137,11 @@ public class PoState implements GameState {
             Collection<String> opponents = context.getPlayerIterator().whoIsOpponents(looser);
             if (opponents.size() == 0 || version == 1) {
                 // Step 2. No game started just live the table
-                resEvent = new RoundEndedEvent(session, new NoOutcome());
+                return new RoundEndedEvent(context, session.getState(), new NoOutcome());
             } else {
                 String winner = opponents.iterator().next();
                 // Step 2. Player gave up, consists of 2 parts - Gave up, and Ended since there is no players involved
-                resEvent = new RoundEndedEvent(session, new PlayerWonOutcome(winner));
+                return new RoundEndedEvent(context, session.getState(), new PlayerWonOutcome(winner));
             }
         } else {
             throw ClembleCasinoException.fromError(ClembleCasinoError.GamePlayMoveNotSupported);
