@@ -40,7 +40,7 @@ public class ErrorStatusCodeITest {
 
     @Test(expected = ClembleCasinoException.class)
     public void testSelectTwiceError() {
-        List<RoundGamePlayer<PoState>> players = gameScenarios.match(Game.pic);
+        List<RoundGamePlayer<PoState>> players = gameScenarios.round(Game.pic);
         PoRoundPlayer playerA = (PoRoundPlayer) players.get(0);
 
         playerA.select(0, 0);
@@ -49,7 +49,7 @@ public class ErrorStatusCodeITest {
 
     @Test(expected = ClembleCasinoException.class)
     public void testBetBig() {
-        List<RoundGamePlayer<PoState>> players = gameScenarios.match(Game.pic);
+        List<RoundGamePlayer<PoState>> players = gameScenarios.round(Game.pic);
         PoRoundPlayer A = (PoRoundPlayer) players.get(0);
 
         A.select(0, 0);
@@ -60,8 +60,8 @@ public class ErrorStatusCodeITest {
     public void testCreatingSimultaniousGames() {
         ClembleCasinoOperations A = playerOperations.createPlayer();
 
-        RoundGamePlayer<PoState> gamePlayer = gameScenarios.match(Game.pic, A);
-        RoundGamePlayer<PoState> anotherGamePlayer = gameScenarios.match(Game.pic, A);
+        RoundGamePlayer<PoState> gamePlayer = gameScenarios.round(Game.pic, A);
+        RoundGamePlayer<PoState> anotherGamePlayer = gameScenarios.round(Game.pic, A);
         assertEquals(gamePlayer.getSession(), anotherGamePlayer.getSession());
 
         gamePlayer.close();

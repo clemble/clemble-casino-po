@@ -44,7 +44,7 @@
             </dependency>
             <dependency>
                 <groupId>com.clemble.casino</groupId>
-                <artifactId>api-game-cell</artifactId>
+                <artifactId>api-game</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

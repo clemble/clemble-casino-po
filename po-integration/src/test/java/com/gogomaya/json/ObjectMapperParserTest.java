@@ -72,7 +72,8 @@ public class ObjectMapperParserTest {
                 VisibilityRule.visible,
                 DrawRule.owned,
                 WonRule.price,
-                ImmutableList.of("X", "O"));
+                ImmutableList.of("X", "O"),
+                null);
         System.out.println(objectMapper.writeValueAsString(configuration));
     }
 

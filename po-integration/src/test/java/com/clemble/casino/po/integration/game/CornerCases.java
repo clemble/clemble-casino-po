@@ -45,7 +45,7 @@ public class CornerCases {
     @Test
     public void betEverything() {
         // Step 1. Creating game
-        List<RoundGamePlayer<PoState>> players = gameScenarios.match(Game.pic);
+        List<RoundGamePlayer<PoState>> players = gameScenarios.round(Game.pic);
         PoRoundPlayer pA = (PoRoundPlayer) players.get(0);
         PoRoundPlayer pB = (PoRoundPlayer) players.get(1);
         // Step 2. Making some legal moves
@@ -60,7 +60,7 @@ public class CornerCases {
     @Test
     public void betTwice() {
         // Step 1. Creating game
-        List<RoundGamePlayer<PoState>> players = gameScenarios.match(Game.pic);
+        List<RoundGamePlayer<PoState>> players = gameScenarios.round(Game.pic);
         PoRoundPlayer pA = (PoRoundPlayer) players.get(0);
         PoRoundPlayer pB = (PoRoundPlayer) players.get(1);
         // Step 2. Making some legal moves
@@ -71,7 +71,7 @@ public class CornerCases {
         pB.select(1, 1);
         pA.bet(2);
         pB.bet(3);
-        CellState cellState = pB.getState().getRoot().getBoard()[1][1];
+        CellState cellState = pB.getState().getState().getBoard()[1][1];
         assertEquals(cellState.getBet(pA.getPlayer()), 3);
         assertEquals(cellState.getBet(pB.getPlayer()), 4);
     }
@@ -97,8 +97,8 @@ public class CornerCases {
         pA.waitForEnd();
         pB.waitForEnd();
 
-        pA = gameScenarios.match(Game.pic, A);
-        pB = gameScenarios.match(Game.pic, B);
+        pA = gameScenarios.round(Game.pic, A);
+        pB = gameScenarios.round(Game.pic, B);
 
         pA.waitForStart();
         assertTrue(pA.isAlive());
