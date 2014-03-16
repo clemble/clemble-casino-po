@@ -27,7 +27,7 @@ public class PoRoundPlayer extends GenericRoundGamePlayer<PoState> {
         ImmutablePair<Integer, Integer> from = new ImmutablePair<>(fromRow, fromColumn);
         ImmutablePair<Integer, Integer> to = new ImmutablePair<>(toRow, toColumn);
         // Step 2. Generating move action
-        MoveChipAction moveAction = new MoveChipAction(getPlayer(), from, to);
+        ShiftChipAction moveAction = new ShiftChipAction(getPlayer(), from, to);
         // Step 3. Actually performing action
         perform(moveAction);
     }

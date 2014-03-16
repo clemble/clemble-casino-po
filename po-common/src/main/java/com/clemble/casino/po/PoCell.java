@@ -30,4 +30,7 @@ public class PoCell implements PlayerAware {
         return chip;
     }
 
+    public boolean owned() {
+        return player != PlayerAware.DEFAULT_PLAYER;
+    }
 }

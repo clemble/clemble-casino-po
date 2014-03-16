@@ -1,20 +1,17 @@
 package com.clemble.casino.po.action;
 
 import com.clemble.casino.ImmutablePair;
-import com.clemble.casino.game.action.UseGameUnitAction;
 import com.clemble.casino.game.unit.GameUnit;
 import com.clemble.casino.po.PoCard;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-import javax.jws.soap.SOAPBinding;
-
 /**
  * Created by mavarazy on 15/03/14.
  */
-@JsonTypeName("move")
-public class MoveChipAction implements PoCardAction {
+@JsonTypeName("shift")
+public class ShiftChipAction implements PoCardAction {
 
     final private String player;
     final private ImmutablePair<Integer, Integer> from;
@@ -22,10 +19,10 @@ public class MoveChipAction implements PoCardAction {
     final private ImmutablePair<Integer, Integer> to;
 
     @JsonCreator
-    public MoveChipAction(
-        @JsonProperty("player") String player,
-        @JsonProperty("from") ImmutablePair<Integer, Integer> from,
-        @JsonProperty("to") ImmutablePair<Integer, Integer> to) {
+    public ShiftChipAction(
+            @JsonProperty("player") String player,
+            @JsonProperty("from") ImmutablePair<Integer, Integer> from,
+            @JsonProperty("to") ImmutablePair<Integer, Integer> to) {
         this.player = player;
         this.from = from;
         this.to = to;
@@ -52,9 +49,9 @@ public class MoveChipAction implements PoCardAction {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof MoveChipAction)) return false;
+        if (!(o instanceof ShiftChipAction)) return false;
 
-        MoveChipAction that = (MoveChipAction) o;
+        ShiftChipAction that = (ShiftChipAction) o;
 
         if (from != null ? !from.equals(that.from) : that.from != null) return false;
         if (player != null ? !player.equals(that.player) : that.player != null) return false;
